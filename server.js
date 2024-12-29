@@ -1,14 +1,24 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import { Sequelize } from "sequelize";
 import pg from "pg";
 import env from "dotenv";
 
 
 const app = express();
-const port = 5000;
+const port = 5000 || process.env.PG_HOST;
 env.config();
 
+
+// const sequelize = new Sequelize(process.env.DB_URL,{
+//     dialect: "sqlite",
+//     storage: "./database.sqlite",
+//     logging: false,    
+// });
+// sequelize.sync().then(() => {console.log("database connected");
+// }).catch((err) => {console.log(err);
+// });
 
 const db = new pg.Client({
     user: process.env.PG_USER,
@@ -54,11 +64,6 @@ app.get('/menu/:id/items', async (req, res) => {
     }
 });
 
-  
-  app.get('/menus', (req, res) => {
-    res.json({ message: 'Menus route works!' });
-  });
-  
 
 app.listen(port, () => {
     console.log(`Listening to port http://localhost:${port}`);
