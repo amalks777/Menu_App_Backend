@@ -25,7 +25,11 @@ const db = new pg.Client({
     host: process.env.PG_HOST,
     database: process.env.PG_DATABASE,
     password: process.env.PG_PASSWORD,
-    port: 5432,
+    port: 5433,
+    // connectionString: process.env.DATABASE_URL,  // Use DATABASE_URL if it's provided by Render
+    // ssl: {
+    //   rejectUnauthorized: false,  // Required for SSL connections on Render
+    // },
 });
 db.connect();
 
