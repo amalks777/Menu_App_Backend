@@ -1,13 +1,13 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { Sequelize } from "sequelize";
+// import { Sequelize } from "sequelize";
 import pg from "pg";
 import env from "dotenv";
 
 
 const app = express();
-const port = 5000 || 5433;
+const port = 3000 || process.env.PG_PORT;
 env.config();
 
 
